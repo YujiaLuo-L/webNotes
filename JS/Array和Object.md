@@ -1,7 +1,24 @@
 ### 如何判断数组和对象？
 
-这里不得不提到typeof和instanceof。
 
+#### 判断一个参数的数据类型是否是数组
+##### Array.prototype.isPrototypeOf()
+
+````javascript
+console.log(Array.prototype.isPrototypeOf(arr)); //true
+console.log(Object.prototype.isPrototypeOf(arr)); //true
+console.log(Array.prototype.isPrototypeOf(obj1)); //false
+````
+
+##### Array.isArray(arr)
+返回一个布尔值，用来表示参数的数据类型是否为数组。
+
+````javascript
+const arr=[];
+const abj={};
+console.log(Array.isArray(arr)); //true 
+console.log(Array.isArray(obj)); //false 
+````
 #### typeof
 
 返回一个字符串，表示未经计算的操作数的类型
@@ -47,6 +64,8 @@ let str1 = 'xxx';
 console.log(str instanceof String); //true
 console.log(str1 instanceof String); //false
 ````
+
+
 #### typeof和instanceof的区别
 
 ① typeof返回变量的基本类型，instanceof返回一个布尔值
@@ -87,6 +106,14 @@ function getType(obj){
 ````
 
 参考 <https://vue3js.cn/interview/JavaScript/typeof_instanceof.html#%E4%B8%80%E3%80%81typeof>
+
+    总结：
+    Array.prototype.isPrototypeOf() 返回一个布尔值，可以判断一个变量是否是数组。
+    Array.isArray(arr) 返回一个布尔值，表示参数是否是数组类型。
+    typeof 可以判断出基本数据的类型，而引用类型数据均为Object，无法区分。
+    instanceof 返回一个布尔值，可用来判断钩爪函数的prototype是否在某个实例对象的原型上。
+    Object.prototype.toString() 通用检测数据类型。可以正确检测出来所有的数据类型。
+
 
 ### 如何判断数组Array和对象Object是否为空？
 
@@ -201,3 +228,5 @@ console.log(objKeys.length==0); //true
 
 参考： <https://cloud.tencent.com/developer/article/1536958>
 
+    总结：
+    判断数组为空：

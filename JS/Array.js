@@ -47,3 +47,11 @@ if (layer) {
 } else {
     console.log(111,false);
 }
+
+const obj1 = {};
+console.log(Array.prototype.isPrototypeOf(arr)); //true
+console.log(Object.prototype.isPrototypeOf(arr)); //true
+console.log(Array.prototype.isPrototypeOf(obj1)); //false
+
+console.log(Array.isArray(arr)); //true 
+console.log(Array.isArray(obj)); //false 
