@@ -1,6 +1,6 @@
 // 判断一个数组是否为空
 let arr=[] ;
-if (arr==='null') {
+if (arr==false) {
     console.log("if直接判断arr:    ",true);
 } else {
     console.log("if直接判断arr:    ",false);
@@ -16,4 +16,34 @@ if (obj==='null') {
 
 console.log(!arr);
 console.log(!arr);
+console.log(typeof (arr));
 
+//判断对象是否为空
+// JSON.stringify(obj)=="{}"
+console.log(JSON.stringify(obj) == "{}"); //true
+
+//for...in...
+var fun = function (obj) {
+    for (var key in obj) {
+        return false;
+    }
+    return true;
+}
+objIsNull = fun(obj);
+console.log(objIsNull); //true
+ 
+// Object.getOwnPropertyNmages()方法
+var objarr = Object.getOwnPropertyNames(obj);
+console.log(objarr.length == 0); //true
+
+// Object.keys()方法
+
+var objKeys = Object.keys(obj);
+console.log(objKeys.length==0); //true
+
+const layer = [];
+if (layer) {
+    console.log(111,true);
+} else {
+    console.log(111,false);
+}
