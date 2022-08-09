@@ -147,7 +147,7 @@ if (obj) {
 ```
 结果：
 
-<img src='./img/JS/if判断arr和obj为空结果.png' />
+<img src='../img/JS/if判断arr和obj为空结果.png' />
 
 原因：
 
