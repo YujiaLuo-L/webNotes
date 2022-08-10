@@ -229,4 +229,7 @@ console.log(objKeys.length==0); //true
 参考： <https://cloud.tencent.com/developer/article/1536958>
 
     总结：
-    判断数组为空：
+    判断数组为空：Array.length()==0;
+    判断对象为空：
+        Object.keys(obj).length()==0; 
+        Object.getOwnPropertyNames(obj).length==0
