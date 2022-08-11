@@ -41,7 +41,7 @@
     this 表示上下文，function的上下文
 
 
- **(1)传入数组，结果返回和原数组一致**
+**(1)传入数组，结果返回和原数组一致**
 
 ````javascript
 const arr = [1, 2, 3, 4, 5, 6]
@@ -60,7 +60,6 @@ const obj = { name: 'kk', age: 12 }
 const objlength = { name: 'kk', age: 12, 'length': 2 }
 var b = Array.from(obj); //[]
 var b = Array.from(objlength); //[ undefined, undefined ]
-
 ````
 
 
@@ -71,7 +70,6 @@ const sxObjlength1={ '1':'cn','0':'kk','2':12, length : 3}
 var b = Array.from(sxobj); //[]
 var b = Array.from(sxObjlength); //[ undifined, 'kk' ]
 var b = Array.from(sxObjlength1); //[ 'kk','cn',  12 ]
-
 ````
 
 **（3）传入字符串**
@@ -160,20 +158,40 @@ console.log(arr1.sort((a,b)=>a-b),'      原数据' ,arr1);
 
 ````
 
-参考：< https://www.w3school.com.cn/jsref/jsref_copywithin.asp >
+参考：<https://www.w3school.com.cn/jsref/jsref_copywithin.asp>
 #### Array.copyWithin(target, start, end)
     target  必需, 将元素复制到的索引位置。
     start   可选,开始复制元素的索引位置（默认为 0）.
     end     可选,停止从中复制元素的索引位置（默认为 array.length）。
 #### Array.flat(depth)
 
-## 数组的遍历
+## JS循环
 
+参考：<https://blog.csdn.net/qq_41899174/article/details/82797089>
 
-## 数组和字典
+<img src="./../img/JS/JS循环.png" />
+
+foreach，map，filter循环中途是无法停止的，总是会将所有成员遍历完。
 
 ## map和set
+### map
+    map类似于对象，是键值对的集合
+    new Map()
+
+<img src='../img/JS/map.png'/>
+
+### set
+    set类似数组，但其中元素的值是唯一的，向其中添加重复的值时会被忽略
+    利用set可以很好的进行数组去重，set通过size属性获得其中元素的数量
+
+    new Set()
+
+<img src='../img/JS/set.png'/>
 
 ## JS字符串方法
 
-<!-- <img src='../img/JS/JSString.png' > -->
+split()字符串方法，对数组无效
+
+参考：<https://www.w3school.com.cn/js/js_string_methods.asp>
+
+<img src='../img/JS/字符串实例方法.png' />
