@@ -10,6 +10,9 @@
 
 **undefined** 表示一个未初始化的值，JavaScript允许声明变量但不对其赋值。
 
+数据类型：值类型数据、引用类型数据
+引用类型：对象、数组、函数
+
 
 ## 变量声明
 
@@ -17,12 +20,27 @@
 
 <img src='../img/JS/JS变量.png' >
 
+ES6之后最好用let声明变量，var有问题。
+
+#### var和let的区别
+
+在for循环的时候使用var进行变量声明，在从上一轮循环进入到下一轮循环的时候变量的值发生改变，这是时所有已声明的var循环变量的值都发生了改变，因为var声明的变量在整个函数都是可用的。
+例如：？？
+
+#### 清空变量
+
+在需要清空一个变量值的情况下使用null
+
+
+#### 静态变量和动态变量
+？？
 
 ## 数组
 
 参考： < https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array >
 
-实际上JS是不存在多维数组 ，因为无法直接定义一个多维数组，但JS中的数组元素可以是任意数据类型，可以将数组中的某个元素也设置为数组
+实际上JS是不存在多维数组 ，因为无法直接定义一个多维数组，但JS中的数组元素可以是任意数据类型，可以将数组中的某个元素也设置为数组。
+
 
 只能用整数作为数组元素的索引，而不能用字符串。
 
@@ -180,6 +198,24 @@ foreach，map，filter循环中途是无法停止的，总是会将所有成员�
 
 <img src='../img/JS/map.png'/>
 
+
+**使用map能重构一个数组**
+比如有一个数组[1,nll,2,null]
+想要去除undefined的项实现[1,2]
+
+一个对象数组按照name数组的排列去排序
+````javascript
+const _fields: any[] = [];
+  fieldOptions.value.forEach((t) => {
+    const index = fields.indexOf(t.name);
+    if (index > -1) {
+      _fields[index] = { name: t.name, aliasName: t.label };
+    }
+  });
+````
+一个对象数组按照name数组的排列去排序
+
+
 ### set
     set类似数组，但其中元素的值是唯一的，向其中添加重复的值时会被忽略
     利用set可以很好的进行数组去重，set通过size属性获得其中元素的数量
@@ -195,3 +231,6 @@ split()字符串方法，对数组无效
 参考：<https://www.w3school.com.cn/js/js_string_methods.asp>
 
 <img src='../img/JS/字符串实例方法.png' />
+
+## Lodash
+Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
