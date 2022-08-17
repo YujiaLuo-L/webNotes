@@ -1,8 +1,8 @@
 ### 如何判断数组和对象？
 
-
 #### 判断一个参数的数据类型是否是数组
 ##### Array.prototype.isPrototypeOf()
+在JS中,isPrototypeOf()函数用来测试一个对象是否存在于另一个对象的原型链上。
 
 ````javascript
 console.log(Array.prototype.isPrototypeOf(arr)); //true
@@ -179,6 +179,7 @@ obj==='undefined'; // false
 想将对象转为bool值得时候，除了通过Boolean函数，还可以通过 **双重非（!!）** 的方式。
 
 #### （2）判断Array是否为空
+[]数组为空即数组的长度为0；
 ##### Array.length()>0
 ##### Array==false //true
 ````javascript
@@ -220,6 +221,7 @@ console.log(objarr.length == 0); //true
 
 ##### Object.keys()  --ES6的新方法
 
+判断对象是否为空，可以通过验证对象的keys长度为0，Object.keys(obj).length===0。
 ````javascript
 var objKeys = Object.keys(obj);
 console.log(objKeys.length==0); //true
