@@ -1,4 +1,6 @@
 ### Ajax
+AJAX async javascript and xml异步和xml
+前后台交互的能力，也就是我们客户端给服务端发送消息的工具，以及接收响应的工具。
 
 <img src="../img/Ajax/Ajax.png">
 
@@ -20,7 +22,7 @@ Fetch请求默认不带cookie（可以通过credential:'include'来设置）
 HTTP是无状态有会话的。
 
 ### 跨域
-什么是跨域？如何解决跨域问题？
+什么是跨域？如何解决跨域问题？跨域请求如何携带cookie?
 <img src='../img/Ajax/URL.png'/>
 
 #### 同源策略
