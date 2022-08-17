@@ -1,14 +1,17 @@
 ## JS基础
 
-本文主要介绍JS的基本数据类型、常量和变量声明、数组的方法（常用方法和遍历方法）、字符串的方法、字典
+本文主要介绍JS的基本数据类型、常量和变量声明、数组的方法（常用方法和遍历方法）、字符串的方法、字典。
 
 ## 基本数据类型
 
 <img src='../img/JS/JS基础数据类型.png' />
 
 **null** 表示一个空值必须使用null关键字才能访问。
+null取非(!)，结果为false，和自己比较===null/undefined,结果为false
+
 
 **undefined** 表示一个未初始化的值，JavaScript允许声明变量但不对其赋值。
+undefined和自己比较，结果为false。
 
 数据类型：值类型数据、引用类型数据
 引用类型：对象、数组、函数
@@ -34,6 +37,11 @@ ES6之后最好用let声明变量，var有问题。
 
 #### 静态变量和动态变量
 ？？
+
+
+
+#### var和let循环问题
+
 
 ## 数组
 
@@ -126,6 +134,50 @@ var b = Array(obj,obj)   // [ { name: 'gg' }, { name: 'gg' } ]
 ````
 当参数个数为1且参数类型为数值型的时候，实际上是制定了数组的长度。
 
+#### Array.splice(startIndex,number，replace)
+    ①当number>0,且不传replace
+    会改变原数组，删除从startIndex为起点的number和元素，返回一个新的数组，即删除的数组元素
+    ②当number=0，且传值replace时
+    会在数组的startIndex位置添加一个元素。会改变元素组
+    ③当number>0，且传参replace 
+    会在数组的startIndex位置开始替换后面number和元素，注意要替换几个元素，就要传入几个元素，可以一个一个传入也可以传入一个数组然后解构
+
+````javascript
+let arr = [1, 2, 3, 4, 5, 6, 7];
+const newArr = arr.splice(3, 2);
+console.log(arr, newArr); //[ 1, 2, 3, 6, 7 ] [ 4, 5 ]
+let arr2 = [1, 2, 3, 4, 5, 6, 7];
+const newArr1 = arr2.splice(3, 0,'ll');
+console.log(arr2,newArr1);//[1, 2, 3, 'll',4, 5, 6, 7] []
+let arr3 = [1, 2, 3, 4, 5, 6, 7];
+const newArr2 = arr3.splice(3, 2,'ll','kk');
+console.log(arr3,newArr2); //[1,    2,    3,'ll', 'kk', 6,7] [ 4, 5 ]
+// 当像替换3个数据，但只传入两个，那么默认第三个被删除了
+let arr3 = [1, 2, 3, 4, 5, 6, 7];
+const newArr2 = arr3.splice(3, 3,'ll','kk');
+console.log(arr3,newArr2); //[ 1, 2, 3, 'll', 'kk', 7 ] [ 4, 5, 6 ]
+//当number为1，但是传入了两个替换元素，那么就是用这两个元素替换到原本的元素
+let arr3 = [1, 2, 3, 4, 5, 6, 7];
+const newArr2 = arr3.splice(3, 1,'ll','kk');
+console.log(arr3,newArr2); //[ 1, 2, 3, 'll', 'kk', 5，6，7 ] [ 4]
+
+````
+
+
+#### 数组删除某个元素delete
+delete
+用于删除对象的某个属性，不会直接释放内存，会降低执行的速度
+最有效的方式是：将不需要的属性设置为undefined
+
+````javascript
+let arr = [1, 2, 3, 4, 5, 6, 7];
+delete arr[2];
+console.log(arr); //[ 1, 2, <1 empty item>, 4, 5, 6, 7 ]
+````
+
+### 
+
+
 ### 数组实例方法
 
 <img src='../img/JS/数组实例化方法.png'/>
@@ -183,6 +235,8 @@ console.log(arr1.sort((a,b)=>a-b),'      原数据' ,arr1);
     end     可选,停止从中复制元素的索引位置（默认为 array.length）。
 #### Array.flat(depth)
 
+
+
 ## JS循环
 
 参考：<https://blog.csdn.net/qq_41899174/article/details/82797089>
@@ -190,6 +244,11 @@ console.log(arr1.sort((a,b)=>a-b),'      原数据' ,arr1);
 <img src="./../img/JS/JS循环.png" />
 
 foreach，map，filter循环中途是无法停止的，总是会将所有成员遍历完。
+
+### for和forEach的性能区别
+
+for>forEach>map
+原因：for没有额外的函数调用栈和上下文，实现简单，forEach有额外的，而map要返回一个新数组，导致需要内存分配
 
 ## map和set
 ### map
