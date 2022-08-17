@@ -228,7 +228,8 @@ console.log(objKeys.length==0); //true
 ````
 使用Object.keys()可以获取到对象中的属性名并返回数组对象。判断此数组是否为空，即对象是否为空。
 
-参考： <https://cloud.tencent.com/developer/article/1536958>
+参考：  <https://cloud.tencent.com/developer/article/1536958>
+        <https://cloud.tencent.com/developer/article/1743491>
 
     总结：
     判断数组为空：Array.length()==0;

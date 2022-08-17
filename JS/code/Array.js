@@ -114,61 +114,45 @@
 // const obj={name:'gg'}
 // var b = Array(obj,obj)   // [ { name: 'gg' }, { name: 'gg' } ]
 
-// let arr = [1, 2, 3,]
-// let arr1 = [4, 5, 6, 5]
-// let obj = [{ name: 'll', age: 18 }, { name: 'kk', age: 19 }]
-// const arr3 = [[1, 2], [], [3, 4]];
-// console.log(arr.at(2), '      原数据', arr);
-// // 3 原数据 [ 1, 2, 3 ]
-// console.log(arr.concat(arr1), '      原数据', arr);
-// // [1, 2, 3, 4, 5, 6, 5] 原数据 [ 1, 2, 3 ]
-// console.log(arr.copyWithin(1, 0, 2), '      原数据', arr);
-// // [ 1, 1, 2 ] 原数据 [ 1, 1, 2 ] 会改变原数组
-// console.log(Object.entries(arr1), '      原数据', arr1);
-// // [ [ '0', 4 ], [ '1', 5 ], [ '2', 6 ], [ '3', 5 ] ] 原数据 [ 4, 5, 6, 5 ]
-// console.log(Object.entries(obj), '      原数据', obj);
-// // [ [ '0', { name: 'll', age: 18 } ], [ '1', { name: 'kk', age: 19 } ] ] 原数据 [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ]
-// console.log(arr.every((item) => item > 0), '      原数据', arr);
-// // true 原数据 [ 1, 1, 2 ]
-// console.log(arr.fill(0), '      原数据', arr);
-// // [ 0, 0, 0 ] 原数据 [ 0, 0, 0 ] 会改变原数组
-// console.log(arr1.filter((item, index) => { const test = item + index; return test>6}),'      原数据' ,arr1);
-// // [ 6, 5 ] 原数据 [ 4, 5, 6, 5 ]
-// console.log(arr1.find((item) => item > 4), '      原数据', arr1);
-// // 5 原数据 [ 4, 5, 6, 5 ]
-// console.log(arr1.findIndex((item) => item > 4), '      原数据', arr1);
-// // 1 原数据 [ 4, 5, 6, 5 ]
-// console.log(obj.flat(), '      原数据', obj);
-// // [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ] 原数据 [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ]
-// console.log(arr3.flat(), '      原数据', arr3);
-// // [ 1, 2, 3, 4 ] 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
-// console.log(arr3.flatMap((item) => item), '      原数据', arr3);
-// // [ 1, 2, 3, 4 ] 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
-// console.log(arr3, arr3.join(), '      原数据', arr3);
-// // [ [ 1, 2 ], [], [ 3, 4 ] ] 1,2,,3,4 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
-// console.log(Object.keys(arr), '      原数据', arr);
-// // [ '0', '1', '2' ] 原数据 [ 0, 0, 0 ]
-// console.log(arr1.lastIndexOf(5), '      原数据', arr1);
-// // 3 原数据 [ 4, 5, 6, 5 ]
-// console.log(arr1.reduce((total, num) => total - num), '      原数据', arr1);
-// // -12 原数据 [ 4, 5, 6, 5 ] => 4-5-6-5=-12
-// console.log(arr1.reduceRight((total, num) => total - num), '      原数据', arr1);
-// // -10 原数据 [ 4, 5, 6, 5 ]  => 5-6-5-4=-10
-// console.log(arr1.sort((a,b)=>a-b),'      原数据' ,arr1);
-// // [ 4, 5, 5, 6 ] 原数据 [ 4, 5, 5, 6 ]
-
-// let arr = [1, 2, 3, 4, 5, 6, 7];
-// const newArr = arr.splice(3, 2);
-// console.log(arr, newArr); //[ 1, 2, 3, 6, 7 ] [ 4, 5 ]
-// let arr2 = [1, 2, 3, 4, 5, 6, 7];
-// const newArr1 = arr2.splice(3, 0,'ll');
-// console.log(arr2,newArr1);//[1, 2, 3, 'll',4, 5, 6, 7] []
-// let arr3 = [1, 2, 3, 4, 5, 6, 7];
-// const newArr2 = arr3.splice(3, 1,'ll','kk');
-// console.log(arr3,newArr2); //[ 1, 2, 3, 'll', 'kk', 5，6，7 ] [ 4]
-
-let arr = [1, 2, 3, 4, 5, 6, 7];
-delete arr[2];
-console.log(arr); //[ 1, 2, <1 empty item>, 4, 5, 6, 7 ]
-
-
+let arr = [1, 2, 3,]
+let arr1 = [4, 5, 6, 5]
+let obj = [{ name: 'll', age: 18 }, { name: 'kk', age: 19 }]
+const arr3 = [[1, 2], [], [3, 4]];
+console.log(arr.at(2), '      原数据', arr);  
+// 3 原数据 [ 1, 2, 3 ]   
+console.log(arr.concat(arr1), '      原数据', arr);  
+// [1, 2, 3, 4, 5, 6, 5] 原数据 [ 1, 2, 3 ]
+console.log(arr.copyWithin(1, 0, 2), '      原数据', arr);   
+// [ 1, 1, 2 ] 原数据 [ 1, 1, 2 ] 会改变原数组
+console.log(Object.entries(arr1), '      原数据', arr1); 
+// [ [ '0', 4 ], [ '1', 5 ], [ '2', 6 ], [ '3', 5 ] ] 原数据 [ 4, 5, 6, 5 ]
+console.log(Object.entries(obj), '      原数据', obj); 
+// [ [ '0', { name: 'll', age: 18 } ], [ '1', { name: 'kk', age: 19 } ] ] 原数据 [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ]
+console.log(arr.every((item) => item > 0), '      原数据', arr); 
+// true 原数据 [ 1, 1, 2 ]
+console.log(arr.fill(0), '      原数据', arr); 
+// [ 0, 0, 0 ] 原数据 [ 0, 0, 0 ] 会改变原数组
+console.log(arr1.filter((item, index) => { const test = item + index; return test>6}),'      原数据' ,arr1); 
+// [ 6, 5 ] 原数据 [ 4, 5, 6, 5 ]
+console.log(arr1.find((item) => item > 4), '      原数据', arr1); 
+// 5 原数据 [ 4, 5, 6, 5 ]
+console.log(arr1.findIndex((item) => item > 4), '      原数据', arr1); 
+// 1 原数据 [ 4, 5, 6, 5 ]
+console.log(obj.flat(), '      原数据', obj); 
+// [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ] 原数据 [ { name: 'll', age: 18 }, { name: 'kk', age: 19 } ]
+console.log(arr3.flat(), '      原数据', arr3); 
+// [ 1, 2, 3, 4 ] 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
+console.log(arr3.flatMap((item) => item), '      原数据', arr3); 
+// [ 1, 2, 3, 4 ] 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
+console.log(arr3, arr3.join(), '      原数据', arr3); 
+// [ [ 1, 2 ], [], [ 3, 4 ] ] 1,2,,3,4 原数据 [ [ 1, 2 ], [], [ 3, 4 ] ]
+console.log(Object.keys(arr), '      原数据', arr); 
+// [ '0', '1', '2' ] 原数据 [ 0, 0, 0 ]
+console.log(arr1.lastIndexOf(5), '      原数据', arr1); 
+// 3 原数据 [ 4, 5, 6, 5 ]
+console.log(arr1.reduce((total, num) => total - num), '      原数据', arr1);
+// -12 原数据 [ 4, 5, 6, 5 ] => 4-5-6-5=-12
+console.log(arr1.reduceRight((total, num) => total - num), '      原数据', arr1); 
+// -10 原数据 [ 4, 5, 6, 5 ]  => 5-6-5-4=-10
+console.log(arr1.sort((a,b)=>a-b),'      原数据' ,arr1); 
+// [ 4, 5, 5, 6 ] 原数据 [ 4, 5, 5, 6 ]
