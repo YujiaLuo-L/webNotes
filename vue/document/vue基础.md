@@ -22,6 +22,23 @@ vue是一套用于构建用户界面的渐进式框架。vue被设计为自低�
 
 v-on指令：添加一个事件监听器，通过它调用在vue实例中定义的方法
 v-model指令：实现表单输入和应用状态之间的双向绑定
+v-show
+v-if
+
+#### v-show和v-if
+
+v-show隐藏是为元素添加了display:none ，dom元素还在。不会触发组件的生命周期。
+v-if是将元素添加或者隐藏。v-if由false变为true的时候，触发组件的beforeCreate、create、beforeMount、mounted钩子，由true变为false的时候触发组件的beforeDestory、destoryed方法
+性能消耗：v-if有更高的切换消耗；v-show有更高的初始渲染消耗
+如果需要非常频繁地切换，则使用 v-show 较好
+
+如果在运行时条件很少改变，则使用 v-if 较好
+#### v-if和v-for不建议一起用
+v-for优先级比v-if高。
+故：
+1、永远不要把 v-if 和 v-for 同时用在同一个元素上，带来性能方面的浪费（每次渲染都会先循环再进行条件判断）
+2、如果避免出现这种情况，则在外层嵌套template（页面渲染不生成dom节点），在这一层进行v-if判断，然后在内部进行v-for循环
+3、如果条件出现在循环内部，可通过计算属性computed提前过滤掉那些不需要显示的项
 
 v-lazy 
 描述：图片懒加载指令。
@@ -59,8 +76,29 @@ Vue中的数据更新是异步的,当数据变化的时候，vue会开启一个�
 在vue的nextTick回调中能获取最新的DOM
 $nextTick 能够获取更新后的DOM
 
- 参考：
+参考：
+
 <https://zhuanlan.zhihu.com/p/364479245>
+
+## vue实例挂载过程
+
+new vue()这个过程做了些啥？如何完成数据绑定的？如何将数据渲染到视图的？
+
+new Vue的时候调用会调用_init方法
+
+定义 $set、$get 、$delete、$watch 等方法
+定义 $on、$off、$emit、$off等事件
+定义 _update、$forceUpdate、$destroy生命周期
+调用$mount进行页面的挂载
+
+挂载的时候主要是通过mountComponent方法
+
+定义updateComponent更新函数
+
+执行render生成虚拟DOM
+
+_update将虚拟DOM生成真实DOM结构，并且渲染到页面中
+
 
 
 
@@ -121,6 +159,9 @@ Keep-alive 独有的生命周期：activated和deactivated的。用keep-alive包
 Keep-alive是vue中的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM
 使用原则：当我们在某些场景下不需要让页面重新加载时，我们可以使用keepalive
 
+
+### 数据请求在created和mouted的区别
+created是在组件实例一旦创建完成的时候立刻调用，这时候页面dom节点并未生成；mounted是在页面dom节点渲染完毕之后就立刻执行的。触发时机上created是比mounted要更早的，两者的相同点：都能拿到实例对象的属性和方法。 讨论这个问题本质就是触发的时机，放在mounted中的请求有可能导致页面闪动（因为此时页面dom结构已经生成），但如果在页面加载前完成请求，则不会出现此情况。建议对页面内容的改动放在created生命周期当中。
 ## 事件总线event bus
 
 父子组件通信：父组件通过props向下传数据给子组件，当子组件有事情要告诉父组件时会通过$emit事件告诉父组件。
@@ -327,4 +368,43 @@ Mixins使用
 vue3中使用Composition API进行类似于react hook式的函数式组件开发，替代了mixinx，能更好的进行逻辑代码提取及复用，其思想是将功能定义为从setup函数返回的变量，而不是像vue2中将功能定义为对象属性。
 Vue2的mixins和vue3的mixins ??? (vue3基础笔记未完成)
 
-## 
+
+## 路由router
+
+path路径，name路径别名
+path是路径，还可以有耳机路径，如path：‘：/sysem/setting’
+name无二级，相当于给path去一个别名方便记住
+
+
+router之fullpath
+路由跳转其实具有刷新功能
+fullpath能缓存路由跳转后面携带的参数（刷新后依旧存在）
+而path不能缓存跳转后携带的参数。故path能在只有两层数据结构的移动端起作用
+
+
+$router 路由操作对象，只写对象，push(),replace(),go()
+$route 路由信息，对象，只读对象
+path和name跳转方式，都可以用query传参
+而path方式，params传参会被忽略，只能用name
+直白的说，query相当于get请求页面跳转时，可在地址栏看到请求参数，而params相当于post，参数不会在地址栏显示。
+
+
+v-loading使用
+集成vuex
+在vue3 中使用pinia数据存储工具
+它具有轻量化、体量小的特点
+但是不可以实现时间旅行
+Npm I-D pinia@next
+
+
+
+登录页面
+首先是要有输入用户名和登录密码的
+那么引入element-ui
+注意vue2和vue3所使用的也有所不同
+Vue3中使用element-plus
+
+需要配置eslint
+需要配置sass
+需要配置svg
+
