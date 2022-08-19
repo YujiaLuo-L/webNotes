@@ -16,7 +16,6 @@ vite旨在利用生态系统中的新进展解决上述问题。
 
     npm install -g create-vite-app
 
-    
 #### 2、创建项目
     create-vite-app vue3-vite （不需要自己选，默认配置）
     npm init @vitejs/app （可自选配置）
@@ -29,19 +28,10 @@ vite旨在利用生态系统中的新进展解决上述问题。
     vite配置文件
     vite.config.ts：项目的全局配置文件，启动时会自动读取该文件。
     配置：@指向src目录、服务端口、打包路径、代理等。
-
     官网：<https://vitejs.dev/config/>
 
 #### 集成路由
     安装支持vue3的路由npm i vue-router@4
-    前置路由和后置路由
-    前置路由：
-    router.beforeEach((to, from, next) => { 
-    // to:要去哪个页面
-    // from:从哪里来
-    // next:它是一个函数。
-    // 如果直接放行 next() 
-    // 如果要跳到其它页 next(其它页) })
 
     在main中挂载路由
 

@@ -389,6 +389,15 @@ path和name跳转方式，都可以用query传参
 直白的说，query相当于get请求页面跳转时，可在地址栏看到请求参数，而params相当于post，参数不会在地址栏显示。
 
 
+前置路由和后置路由
+    前置路由：
+    router.beforeEach((to, from, next) => { 
+    // to:要去哪个页面
+    // from:从哪里来
+    // next:它是一个函数。
+    // 如果直接放行 next() 
+    // 如果要跳到其它页 next(其它页) })
+
 v-loading使用
 集成vuex
 在vue3 中使用pinia数据存储工具
