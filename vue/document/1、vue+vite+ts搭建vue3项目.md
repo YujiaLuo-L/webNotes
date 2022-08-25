@@ -20,6 +20,7 @@ vite旨在利用生态系统中的新进展解决上述问题。
     create-vite-app vue3-vite （不需要自己选，默认配置）
     npm init @vitejs/app （可自选配置）
 #### 3、安装依赖插件
+    进入项目目录
     npm install 或 yarn install 
     yarn add -D eslint eslint-plugin-vue
     npm install -D typescript

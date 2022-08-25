@@ -433,3 +433,9 @@ Vue3中使用element-plus
 
 
 ## 数据劫持
+
+## patch
+Vue 的 patch 算法有三个作用:
+1、负责首次渲染和后续更新或者销毁组件
+2、如果老的 VNode 是真实元素，则表示首次渲染，创建整棵 DOM 树，并插入 body，然后移除老的模版节点
+3、如果老的 VNode 不是真实元素，并且新的 VNode 也存在，则表示更新阶段，执行 patchVnode
