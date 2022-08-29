@@ -94,3 +94,6 @@ wkt是用文本格式记录地地理信息的一个标记语言
 OSGB倾斜摄影 open scene graph binary
 .obj（人工建模）
 一个obj文件一般包括obj、mtl、纹理图片三个文件
+
+
+## Three.js天空盒子按照 右、左、上、下、前、后 的排序
