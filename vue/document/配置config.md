@@ -79,6 +79,52 @@ export default defineConfig({
 这里注意eslint配置的规则要和prettierrc一致。否者可能会出现诸如，一个字符串味单引号一个为双引号一下报错来回提示，运行不正常的问题。
 
 
+
+## 配置路径@
+
+**首先下载path**
+  npm install path --save
+**在配置文件vite.config.ts中注册**
+````javascript
+import path, { resolve } from 'path'
+resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+      // '@/components': resolve(__dirname, 'src/components')
+    },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.scss']
+  },
+````
+如果引入path时报错，则在tsconfig.node.js文件中加入   "allowSyntheticDefaultImports": true 
+
+或者这样做
+````javascript
+const path = require('path')
+
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, 'src')
+    },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.scss']
+  },
+````
+
+
+
+**添加path**
+在tsconfig.json文件中
+````javascript
+"baseUrl":"./",
+    "paths":{
+      "@/*":["src/*"],
+      "#/*":["types/*"]
+    }
+````
+
+## 配置scss
+
+
+
 参考：
 <https://blog.csdn.net/qq_40323256/article/details/101867706> 
 <https://blog.csdn.net/zz00008888/article/details/109536466> 
