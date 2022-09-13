@@ -19,7 +19,7 @@
 //     if(Math.abs(numlist.length-strlist.length)>=2){
 //         return ""
 //     }else{
-//         let resultstr='';
+//         let resultstr=;
 //         if(numlist.length!==strlist.length){
 //             if(numlist.length>strlist.length){
 //      resultstr=numlist.pop();
@@ -33,31 +33,35 @@
 //             return resultstr;
 //     }
 // };
-    
-// reformat('vd89er55')
+
+// reformat(vd89er55)
 
 
 /**
  * @param {string[]} strs
  * @return {string}
  */
- var longestCommonPrefix = function(strs) {
-    if(strs.length<1){
+var longestCommonPrefix = function (strs) {
+    if (strs.length < 1) {
         return ""
-    }else if(strs.length==1){
+    } else if (strs.length == 1) {
         return strs[0]
-    }else{
-    for(let i=0;i<=strs[0].length;i++){
-        let str=strs[0].slice(0,i+1);
-        for(let j=1;j<strs.length;j++){
-            if(str && strs[j].indexOf(str)>-1){
-                continue;
-            }else{
-                return str.substring(0,str.length-1) || "";
+    } else {
+        for (let i = 0; i <= strs[0].length; i++) {
+            let str = strs[0].slice(0, i + 1);
+            for (let j = 1; j < strs.length; j++) {
+                if (str && strs[j].indexOf(str) > -1) {
+                    continue;
+                } else {
+                    return str.substring(0, str.length - 1) || "";
+                }
             }
         }
-        }
-     }
-     return str[0];
+    }
+    return str[0];
 };
-console.log(longestCommonPrefix(["flower","flower","flower","flower"]))
+console.log(longestCommonPrefix(["flower", "flower", "flower", "flower"]))
+
+
+
+
