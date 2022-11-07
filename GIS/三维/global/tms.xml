@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tilemap tilemapservice="http://tms.osgeo.org/1.0.0" version="1.0.0">
+    <title>未命名(WGS84原始瓦片)</title>
+    <abstract>Rivermap Export TMS</abstract>
+    <srs>EPSG:4326</srs>
+    <vsrs></vsrs>
+    <boundingbox minx="-180.000000000000000" miny="-90.000000000000000" maxx="180.000000000000000" maxy="90.000000000000000" />
+    <origin x="-180.000000000000000" y="-90.000000000000000" />
+    <tileformat extension="jpg" mime-type="image/jpg" width="256" height="256" />
+    <tilesets profile="global-geodetic">
+        <tileset href="" order="0" units-per-pixel="1.406250000" />
+        <tileset href="" order="1" units-per-pixel="0.703125000" />
+        <tileset href="" order="2" units-per-pixel="0.351562500" />
+        <tileset href="" order="3" units-per-pixel="0.175781250" />
+        <tileset href="" order="4" units-per-pixel="0.087890625" />
+        <tileset href="" order="5" units-per-pixel="0.043945313" />
+        <tileset href="" order="6" units-per-pixel="0.021972656" />
+        <tileset href="" order="7" units-per-pixel="0.010986328" />
+        <tileset href="" order="8" units-per-pixel="0.005493164" />
+        <tileset href="" order="9" units-per-pixel="0.002746582" />
+        <tileset href="" order="10" units-per-pixel="0.001373291" />
+        <tileset href="" order="11" units-per-pixel="0.000686646" />
+        <tileset href="" order="12" units-per-pixel="0.000343323" />
+        <tileset href="" order="13" units-per-pixel="0.000171661" />
+        <tileset href="" order="14" units-per-pixel="0.000085831" />
+        <tileset href="" order="15" units-per-pixel="0.000042915" />
+        <tileset href="" order="16" units-per-pixel="0.000021458" />
+        <tileset href="" order="17" units-per-pixel="0.000010729" />
+        <tileset href="" order="18" units-per-pixel="0.000005364" />
+        <tileset href="" order="19" units-per-pixel="0.000002682" />
+        <tileset href="" order="20" units-per-pixel="0.000001341" />
+    </tilesets>
+</tilemap>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>三维定位</title>
+    <link
+      rel="stylesheet"
+      href="./Cesium-1.99/Build/Cesium/Widgets/widgets.css"
+    />
+  </head>
+
+  <body>
+    <div id="mapContainer" style="width: 100%; height: 100%"></div>
+    <div class="buttom" style="display: flex">
+      <button id="viewerFlyTo">viewerFlyTo</button>
+      <button id="CameraFlyTo">CameraFlyTo</button>
+    </div>
+  </body>
+
+  <!-- <script src="./Cesium/Cesium.js"></script> -->
+  <!-- <script src="./smart3d/smart3d.js"></script> -->
+  <script src="./Cesium-1.99/Build/Cesium/Cesium.js"></script>
+
+  <script type="text/javascript">
+    const xmin = 107.61383056640625,
+      xmax = 108.1439208984375,
+      ymin = 35.8319091796875,
+      ymax = 36.36474609375;
+    //创建一个场景视图
+    const viewer = new Cesium.Viewer("mapContainer", { infoBox: false });
+
+    // //调整跳转速度
+    // // 飞到目的地
+
+    document.getElementById("viewerFlyTo").onclick = function (event) {
+      viewer.camera.flyTo({
+        destination: Cesium.Rectangle.fromDegrees(xmin, ymin, xmax, ymax), //飞到某个矩形
+        duration: 1,
+      });
+    };
+  </script>
+</html>

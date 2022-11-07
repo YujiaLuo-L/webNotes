@@ -292,7 +292,19 @@ split()字符串方法，对数组无效
 <img src='../img/JS/字符串实例方法.png' />
 
 ## Lodash
-Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
+Lodash是一个一致性、模块化、高性能的JS实用工具
+通过降低array，number，object，string等等的使用难度从而让JS变得更简单
+Lodash模块化方法，非常适用于：①遍历array，object和string ②对值进行操作和检测 ③创建符合功能的函数
+
+## qs库
+<img src='../img/JS/qs序列化.png'>
+这个库是一个序列化和解析库，与JSON序列化有所不同。
+````javascript
+a={name:'lll',time:666}
+qs.stringify(a); //name=lll&time=666
+JSON.stringify(a); // '{"name":"lll","time":"666"}'
+````
+使用qs序列化后的数据可以直接当作请求传参。
 
 ## 序列化和反序列化
 
