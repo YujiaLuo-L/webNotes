@@ -1,4 +1,4 @@
-/**
+<!-- /**
  * @param {string} s
  * @return {string}
  */
@@ -34,4 +34,8 @@
     }
 };
     
-reformat('vd89er55')
+reformat('vd89er55') -->
+const find=()=>{
+
+}
+find([1,3,2,1,4,2,4]);
