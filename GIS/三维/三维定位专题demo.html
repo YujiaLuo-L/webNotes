@@ -20,8 +20,16 @@
       <div id="toolbar"></div>
     </div>
     <div class="buttom" style="position: fixed; font-size: 18px; top: 10px">
+      <!-- <button id="init">init</button> -->
       <button id="viewerFlyTo">viewerFlyTo</button>
       <button id="CameraFlyTo">CameraFlyTo</button>
+      <button id="CameraFlytoBoundingSphere">CameraFlytoBoundingSphere</button>
+      <button id="viewBoundingSphere">viewBoundingSphere</button>
+      <button id="viewerZoomto">viewerZoomto</button>
+      <button id="CameraLookAt">CameraLookAt</button>
+      <button id="CameraLookAtTransform">CameraLookAtTransform</button>
+      <button id="flyHome">flyHome</button>
+      <button id="setView">setView</button>
     </div>
   </body>
   <script src="./Cesium-1.99/Build/Cesium/Cesium.js"></script>
@@ -31,93 +39,100 @@
       xmax = 107.1439208984375,
       ymin = 35.8319091796875,
       ymax = 36.36474609375;
-    // //调整跳转速度
+    const pointList = [
+      107.62, 35.9, 15000, 108.1, 35.9, 15000, 108.1, 35.5, 15000, 107.62, 35.5,
+      15000,
+    ];
+    const point = new Cesium.Cartesian3.fromDegrees(107.82, 36);
+
+    let pointEntity;
+    let plygonEntity;
     // // 飞到目的地
     const viewer = new Cesium.Viewer("cesiumContainer");
-    let labelSource;
-    //创建一个实体
-
-    function creatEntity() {
+    //创建点实体
+    function creatPointEntity() {
+      let labelSource;
       labelSource = new Cesium.CustomDataSource("labelSource");
       viewer.dataSources.add(labelSource);
-      var list = [
-        {
-          id: 1,
-          lng: 107.62,
-          lat: 35.9,
+      const opts = {
+        id: "pointEntity", //根据需求定义，必须唯一，可以是数据库对应point的主键
+        name: "自行定义", //不唯一
+        position: Cesium.Cartesian3.fromDegrees(Number(107.82), Number(36)),
+        billboard: {
+          image: "../img/circle_bule.png",
+          // 处理图标被遮挡问题
+          // disableDepthTestDistance:1000,//设置与相机的距离，以在该距离处禁用深度测试
+          heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, //获取或设置此广告牌的高度参数
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER, //获取或设置此广告排的水平原点，确定该广告牌是否为在其锚位置的左侧、中央或右侧
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM, //获取或设置此广告牌的垂直原点，确定该广告牌是否为到其锚定位置的上方，下方或中心。
+          scale: 1.0,
+          // distanceDisplayCondition:new Cesium.DistanceDisplayCondition(0,10000) //设置条件，指定将在距离摄像机多远的距离显示图标
         },
-        {
-          id: 2,
-          lng: 107.82,
-          lat: 35.98,
+        label: {
+          text: "红红火火恍恍惚惚",
+          // showBackground: true,
+          font: "24px Helvetica",
+          scale: 0.5,
+          // backgroundColor: Cesium.Color.BLACK.withAlpha(0.3),
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER, //设置此标签的水平原点
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM, //设置此标签的垂直原点
+          pixelOffset: new Cesium.Cartesian2(0, -10), //设置屏幕空间中距此标签远点的像素偏移量
+          heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, //设置广告牌的高度参考，固定在地形上
+          fillColor: Cesium.Color.WHITE, //颜色
+          // eyeOffset: new Cesium.Cartesian3(0, 0, 0),
+          // disableDepthTestDistance:10000,//设置与相机的距离，以在该距离处禁用深度测试
+          // distanceDisplayCondition:new Cesium.DistanceDisplayCondition(0,20000)//设置多少高度的时候标签可见
         },
-        {
-          id: 3,
-          lng: 108.1,
-          lat: 35.9,
-        },
-        {
-          id: 4,
-          lng: 107.9,
-          lat: 36.3,
-        },
-        {
-          id: 5,
-          lng: 108.1,
-          lat: 36,
-        },
-      ];
-      list.forEach((item) => {
-        if (!item.lng || !item.lat) return;
-        const opts = {
-          id: item.id, //根据需求定义，必须唯一，可以是数据库对应point的主键
-          name: "自行定义", //不唯一
-          position: Cesium.Cartesian3.fromDegrees(
-            Number(item.lng),
-            Number(item.lat)
-          ),
-          billboard: {
-            image: "../img/circle_bule.png",
-            // 处理图标被遮挡问题
-            // disableDepthTestDistance:1000,//设置与相机的距离，以在该距离处禁用深度测试
-            // heightReference: Cesium.HeightReference.NONE,//获取或设置此广告牌的高度参数
-            // heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND,//获取或设置此广告牌的高度参数
-            heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, //获取或设置此广告牌的高度参数
-            horizontalOrigin: Cesium.HorizontalOrigin.CENTER, //获取或设置此广告排的水平原点，确定该广告牌是否为在其锚位置的左侧、中央或右侧
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM, //获取或设置此广告牌的垂直原点，确定该广告牌是否为到其锚定位置的上方，下方或中心。
-            scale: 1.0,
-            // distanceDisplayCondition:new Cesium.DistanceDisplayCondition(0,10000) //设置条件，指定将在距离摄像机多远的距离显示图标
-          },
-          label: {
-            text: "红红火火恍恍惚惚",
-            // showBackground: true,
-            font: "24px Helvetica",
-            scale: 0.5,
-            // backgroundColor: Cesium.Color.BLACK.withAlpha(0.3),
-            horizontalOrigin: Cesium.HorizontalOrigin.CENTER, //设置此标签的水平原点
-            verticalOrigin: Cesium.VerticalOrigin.BOTTOM, //设置此标签的垂直原点
-            pixelOffset: new Cesium.Cartesian2(0, -10), //设置屏幕空间中距此标签远点的像素偏移量
-            heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, //设置广告牌的高度参考，固定在地形上
-            fillColor: Cesium.Color.WHITE, //颜色
-            // eyeOffset: new Cesium.Cartesian3(0, 0, 0),
-            // disableDepthTestDistance:10000,//设置与相机的距离，以在该距离处禁用深度测试
-            // distanceDisplayCondition:new Cesium.DistanceDisplayCondition(0,20000)//设置多少高度的时候标签可见
-          },
-        };
-        const entity = labelSource.entities.add(opts);
-      });
+      };
+
+      pointEntity = labelSource.entities.add(opts);
     }
-    creatEntity();
-
+    creatPointEntity();
+    function createPlygonEntity() {
+      let plygonSource;
+      plygonSource = new Cesium.CustomDataSource("plygonSource");
+      viewer.dataSources.add(plygonSource);
+      const opt = {
+        id: "plygonEntity",
+        polygon: {
+          //给出绘制多边形的点的坐标
+          hierarchy: new Cesium.PolygonHierarchy(
+            Cesium.Cartesian3.fromDegreesArrayHeights(pointList) //返回经度纬度和高度数组
+          ),
+          // height: height,
+          material: Cesium.Color.GREEN.withAlpha(0.9),
+          outline: true, // height must be set for outline to display
+          outlineColor: Cesium.Color.RED.withAlpha(0.9),
+          outlineWidth: 18,
+          classificationType: Cesium.ClassificationType.BOTH,
+        },
+      };
+      plygonEntity = plygonSource.entities.add(opt);
+    }
+    createPlygonEntity();
+    //----------------------------------------------------------------------
+    // document.getElementById("init").onclick = function (event) {
+    //   //初始化场景位置
+    //   viewer.scene.camera.setView({
+    //     //初始化相机经纬度
+    //     destination: new Cesium.Cartesian3.fromDegrees(107.62, 35.9, 50000000), //通过最后一个参数可以调节视角高度（初始页面地球大小调节）
+    //     orientation: {
+    //       heading: Cesium.Math.toRadians(175.0),
+    //       pitch: Cesium.Math.toRadians(-91.0), //从上往下看
+    //       roll: 0,
+    //     },
+    //   });
+    // };
     document.getElementById("viewerFlyTo").onclick = function (event) {
-      viewer.flyTo(labelSource);
+      viewer.flyTo(plygonEntity, {
+        // duration: 3,
+        // maximumHeight: 5000000,
+        // offset: new Cesium.HeadingPitchRange(1, 1, 1000), //（heading,pich,range）
+      });
     };
-
     document.getElementById("CameraFlyTo").onclick = function (event) {
       viewer.camera.flyTo({
-        // destination: Cesium.Rectangle.fromDegrees(xmin, ymin, xmax, ymax), //飞到某个矩形
-        destination: Cesium.Rectangle.fromDegrees(444656, 77998), //飞到某个点，注意是世界坐标
-
+        destination: Cesium.Rectangle.fromDegrees(107.62, 35.5, 108.1, 35.9), //(xmin, ymin, xmax, ymax)飞到某个点，注意是世界坐标
         //飞完之后设置相机的角度
         // complete: function () {
         //   viewer.scene.camera.setView({
@@ -130,6 +145,61 @@
         //     },
         //   });
         // },
+      });
+    };
+    document.getElementById("CameraFlytoBoundingSphere").onclick = function (
+      event
+    ) {
+      const boundingSphere = new Cesium.BoundingSphere(
+        new Cesium.Cartesian3.fromDegrees(107.82, 36),
+        100000
+      );
+      viewer.camera.flyToBoundingSphere(boundingSphere, { duration: 3 });
+    };
+
+    document.getElementById("viewBoundingSphere").onclick = function () {
+      const boundingSphere = new Cesium.BoundingSphere(
+        new Cesium.Cartesian3.fromDegrees(107.82, 36),
+        100000
+      );
+      viewer.camera.viewBoundingSphere(
+        boundingSphere,
+        new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0)
+      );
+    };
+    document.getElementById("viewerZoomto").onclick = function (event) {
+      viewer.zoomTo(
+        pointEntity,
+        new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0)
+      );
+    };
+    document.getElementById("CameraLookAt").onclick = function (event) {
+      viewer.camera.lookAt(
+        point,
+        new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0)
+      );
+    };
+    document.getElementById("CameraLookAtTransform").onclick = function (
+      event
+    ) {
+      const transform = Cesium.Transforms.eastNorthUpToFixedFrame(point);
+      viewer.camera.lookAtTransform(
+        transform,
+        new Cesium.Cartesian3(0.0, -4790000.0, 3930000.0)
+      );
+    };
+    document.getElementById("flyHome").onclick = function (event) {
+      viewer.camera.flyHome();
+    };
+    document.getElementById("setView").onclick = function (event) {
+      viewer.camera.setView({
+        //初始化相机经纬度
+        destination: new Cesium.Cartesian3.fromDegrees(107.62, 35.9, 50000000), //通过最后一个参数可以调节视角高度（初始页面地球大小调节）
+        orientation: {
+          heading: Cesium.Math.toRadians(175.0),
+          pitch: Cesium.Math.toRadians(-90.0), //从上往下看
+          roll: 0,
+        },
       });
     };
   </script>
