@@ -14,41 +14,51 @@
   </head>
 
   <body>
-    <div style="width: 100%; height: 100%">
-      <div id="cesiumContainer" class="fullSize"></div>
-      <div id="toolbar"></div>
+    <div >
+      <div id="cesiumContainer" class="fullSize" style="width: 80%; height: 90%;display: inline-block;"></div>
+      <div style="display: inline-block;">
+        <p>经纬度转弧度：</p>
+      </div>
+
     </div>
-    <div class="buttom" style="position: fixed; font-size: 18px; top: 10px">
+    
       <!-- <button id="init">init</button> -->
     </div>
   </body>
   <script src="./Cesium-1.99/Build/Cesium/Cesium.js"></script>
-  <!-- 经纬度转世界坐标 -->
-  function cartesian2Dgrees(degree) { const {longitude, latitude,
-  height}=degrees Cesium.Cartesian3.fromDegrees(longitude, latitude, height,
-  ellipsoid, result); }
-  <!-- 世界坐标转经纬度 -->
-  function cartesian3ToDegrees(viewer, cartesian3) { const ellipsoid =
-  viewer.scene.globe.ellipsoid; const cartographic =
-  ellipsoid.cartesianToCartographic(cartesian3); return
-  cartographicToDegrees(cartographic); // 调用上述方法：弧度(Cartographic) →
-  经纬度 }
 
-  <!-- 弧度转经纬度 -->
-  function cartographicToDegrees(cartographic) { const lat =
-  Cesium.Math.toDegrees(cartographic.latitude); const lng =
-  Cesium.Math.toDegrees(cartographic.longitude); const alt =
-  cartographic.height; return { lat, lng, alt }; }
-  <!-- 屏幕坐标转世界坐标 -->
-  //! 注意：这里屏幕坐标一定要在球上，否则生成出的 cartesian 对象是 undefined
-  const { scene } = viewer; let position = null; if (Cesium.defined(pickedObj)
-  && (pickedObj instanceof Cesium.Cesium3DTileFeature)) { scene.render(); // the
-  cartesian position reconstructed from the depth buffer and window position //
-  如果要获取地形点击位置高程，必须设置 globe.depthTestAgainstTerrain = true;
-  position = scene.pickPosition(windowCoordinates); } else { // find
-  intersection of ray through a pixel and the globe const ray =
-  scene.camera.getPickRay(windowCoordinates); position = scene.globe.pick(ray,
-  scene); }
-  <!-- 经纬度转大地两千 -->
-  <script type="text/javascript"></script>
+  <script type="text/javascript">
+    // const xmin = 106.61383056640625,
+    //   xmax = 107.1439208984375,
+    //   ymin = 35.8319091796875,
+    //   ymax = 36.36474609375;
+    const wgsPoint={lng:106.61383056640625,lat:36.36474609375,height:100};
+   let cartographic;//弧度坐标
+    // // 飞到目的地
+    const viewer = new Cesium.Viewer("cesiumContainer");
+    function main(){
+      degrees2Radian(wgsPoint);
+    }
+    main()
+    // 经纬度转为弧度
+    function degrees2Radian(point){
+      cartographic = Cesium.Cartographic.fromDegrees(
+        point.lng,
+        point.lat,
+        point.height
+      );
+      let ccc1=Cesium.CesiumMath.toRadians(degrees)
+
+      console.log(point,"转为弧度", cartographic);
+    }
+    // 弧度转为经纬度
+    function degrees2Radian(point){
+      let cartographic = Cesium.Cartographic.fromDegrees(
+        point.lng,
+        point.lat,
+        point.height
+      );
+      console.log(point,"转为弧度", cartographic);
+    }
+  </script>
 </html>
